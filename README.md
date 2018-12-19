@@ -11,8 +11,8 @@ PHP environment has PHP packages available and autoloaded so Script Tasks can ta
 ## How to use
 The execution requires a data.json, config.json and an output.json file be present on the host system. The data.json represents the 
 Request instance data.  The config.json represents configuration specific for this Script Task. And the output.json should be a blank 
-file that will be populated by the successful output of the script task. It is the responsibility of the caller to have these files 
-prepared before executing the engine via command line (or docker API).
+file that will be populated by the successful output of the script task. The script task is represented by a script.php file.
+It is the responsibility of the caller to have these files prepared before executing the engine via command line (or docker API).
 
 ## Script Task design
 When writing a Script Task, three variables are available.  They are:
@@ -51,7 +51,7 @@ return $data;
 ```bash
 $ docker run -v <path to local data.json>:/opt/executor/data.json \
   -v <path to local config.json>:/opt/executor/config.json \
-  -v <path to local script.json>:/opt/executor/script.php \
+  -v <path to local script.php>:/opt/executor/script.php \
   -v <path to local output.json>:/opt/executor/output.json \
   processmaker/executor:php \
   php /opt/executor/bootstrap.php
