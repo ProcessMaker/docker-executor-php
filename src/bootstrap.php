@@ -35,6 +35,13 @@ if(!file_exists(SCRIPT_PATH)) {
     exit(SCRIPT_PATH_INVALID);
 }
 
+if (getenv('API_TOKEN')) {
+    $api_config = new Swagger\Client\Configuration();
+    $api_client = new GuzzleHttp\Client(
+        ['headers' => ['Authorization' => 'Bearer ' . getenv('API_TOKEN')]]
+    );
+}
+
 $response = require(SCRIPT_PATH);
 
 // Finally store the output of our script into our output JSON path

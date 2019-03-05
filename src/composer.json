@@ -1,5 +1,12 @@
 {
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./SwaggerClient-php"
+        }
+    ],
     "require": {
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "ProcessMaker/bpm-php-sdk": "@dev"
     }
 }
