@@ -2,7 +2,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "./SwaggerClient-php"
+            "url": "./php-client"
         }
     ],
     "require": {
