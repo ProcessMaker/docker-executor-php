@@ -36,10 +36,9 @@ if(!file_exists(SCRIPT_PATH)) {
 }
 
 if (getenv('API_TOKEN')) {
-    $api_config = new Swagger\Client\Configuration();
-    $api_client = new GuzzleHttp\Client(
-        ['headers' => ['Authorization' => 'Bearer ' . getenv('API_TOKEN')]]
-    );
+    $api_config = new OpenAPI\Client\Configuration();
+    $api_config->setAccessToken(getenv('API_TOKEN'));
+    $api_client = new GuzzleHttp\Client();
 }
 
 $response = require(SCRIPT_PATH);
