@@ -7,21 +7,24 @@ EXECUTOR_IMAGE="nolanpro/executor:php"
 BPM_DIR=/home/vagrant/processmaker
 
 # local clone of https://github.com/ProcessMaker/executor-php
-EXECUTOR_DIR=/home/vagrant/bpm-plugins/ProcessMaker/executor-php
+EXECUTOR_DIR=${PWD}
+
+# local clone of https://github.com/ProcessMaker/pm4-sdk-php
+SDK_PATH=/home/vagrant/bpm-plugins/ProcessMaker/pm4-sdk-php
 
 pushd $BPM_DIR
-    php build_sdk.php
+    rm -rf /tmp/php-client
+    php artisan bpm:sdk php /tmp
+    cp -rf /tmp/php-client/. $SDK_PATH
 popd
 
-SDK_PATH=$BPM_DIR/storage/api/php-client
+# temporary for testing
 pushd $EXECUTOR_DIR/src
-    cp -r $SDK_PATH .
+    # ln -s $SDK_PATH php-client
     rm -rf vendor
     rm -f composer.lock
     composer install
-    
-    # delete it out so docker doesn't copy it into the image
-    rm -rf php-client
+    # rm php-client
 popd
 
 pushd $EXECUTOR_DIR
@@ -31,4 +34,6 @@ pushd $EXECUTOR_DIR
 
     # test it (optional)
     # ./test.sh
+    
+    docker push $EXECUTOR_IMAGE
 popd

@@ -35,9 +35,10 @@ if(!file_exists(SCRIPT_PATH)) {
     exit(SCRIPT_PATH_INVALID);
 }
 
-if (getenv('API_TOKEN')) {
+if (getenv('API_TOKEN') && getenv('API_HOST')) {
     $api_config = new OpenAPI\Client\Configuration();
     $api_config->setAccessToken(getenv('API_TOKEN'));
+    $api_config->setHost(getenv('API_HOST'));
 }
 
 $response = require(SCRIPT_PATH);

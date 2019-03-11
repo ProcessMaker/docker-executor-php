@@ -1,12 +1,12 @@
 {
     "repositories": [
         {
-            "type": "path",
-            "url": "./php-client"
+            "type": "git",
+            "url": "https://github.com/ProcessMaker/pm4-sdk-php.git"
         }
     ],
     "require": {
         "guzzlehttp/guzzle": "~6.0",
-        "ProcessMaker/bpm-php-sdk": "@dev"
+        "ProcessMaker/pm4-sdk-php": "*@dev"
     }
 }
