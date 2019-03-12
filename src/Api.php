@@ -63,8 +63,8 @@ class Api {
             return $this->instances[$class_name];
 
         } elseif (class_exists($this->getClassName($name))) {
-            $this->instances[$name] = new $class_name($this->client, $this->config);
-            return $this->instances[$name];
+            $this->instances[$class_name] = new $class_name($this->client, $this->config);
+            return $this->instances[$class_name];
 
         } else {
             throw new \BadMethodCallException("class $class_name does not exist");
