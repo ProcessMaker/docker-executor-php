@@ -39,6 +39,7 @@ if (getenv('API_TOKEN') && getenv('API_HOST')) {
     $api_config = new ProcessMaker\Client\Configuration();
     $api_config->setAccessToken(getenv('API_TOKEN'));
     $api_config->setHost(getenv('API_HOST'));
+    $api = new Executor\Api($api_config);
 }
 
 $response = require(SCRIPT_PATH);
