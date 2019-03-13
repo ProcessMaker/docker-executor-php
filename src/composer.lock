@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ProcessMaker/pm4-sdk-php.git",
-                "reference": "2df672b76e19a3a6f70fee87965132c1c86f67de"
+                "reference": "52b1f9bf9fff6f431d8667717c81c61c7d4d780c"
             },
             "require": {
                 "ext-curl": "*",
@@ -56,7 +56,7 @@
                 "rest",
                 "sdk"
             ],
-            "time": "2019-03-11T19:15:12+00:00"
+            "time": "2019-03-12T18:38:33+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
