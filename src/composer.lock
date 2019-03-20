@@ -4,14 +4,14 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "772834e856c1f6ee3002d911fa1d7f60",
+    "content-hash": "292b775fcb0bbc131929c79b24df7217",
     "packages": [
         {
             "name": "ProcessMaker/pm4-sdk-php",
             "version": "dev-feature/1",
             "dist": {
                 "type": "path",
-                "url": "./php-sdk",
+                "url": "./pm4-sdk-php",
                 "reference": "af0ac0bb5b2509a51b20bdf9debb0bddbd28d517"
             },
             "require": {
