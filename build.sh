@@ -2,7 +2,7 @@ set -e
 set -x
 
 BRANCH=${BRANCH:=master}
-TAG=${TAG:=dev-$BRANCH}
+TAG=${TAG:=dev-${BRANCH//[\/]/-}}
 EXECUTOR_IMAGE="processmaker/pm4-docker-executor-php:${TAG}"
 
 pushd src
