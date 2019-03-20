@@ -2,7 +2,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "./php-sdk"
+            "url": "./pm4-sdk-php"
         }
     ],
     "require": {
