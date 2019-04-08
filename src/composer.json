@@ -2,12 +2,12 @@
     "repositories": [
         {
             "type": "path",
-            "url": "./pm4-sdk-php"
+            "url": "./-sdk-php"
         }
     ],
     "require": {
         "guzzlehttp/guzzle": "~6.0",
-        "ProcessMaker/pm4-sdk-php": "*@dev"
+        "ProcessMaker/-sdk-php": "*@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^7",
