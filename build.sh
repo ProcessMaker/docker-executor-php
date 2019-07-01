@@ -3,7 +3,7 @@ set -x
 
 BRANCH=${BRANCH:=master}
 TAG=${TAG:=dev-${BRANCH//[\/]/-}}
-EXECUTOR_IMAGE="processmaker/docker-executor-php:${TAG}"
+EXECUTOR_IMAGE="processmaker4/executor-php:${TAG}"
 
 pushd src
   if [[ ! -d "sdk-php" ]]; then
@@ -16,4 +16,3 @@ pushd src
 popd
 
 docker build -t $EXECUTOR_IMAGE .
-rm -rf src/sdk-php
