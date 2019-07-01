@@ -2,12 +2,12 @@
     "repositories": [
         {
             "type": "path",
-            "url": "./spark-sdk-php"
+            "url": "./sdk-php"
         }
     ],
     "require": {
         "guzzlehttp/guzzle": "~6.0",
-        "ProcessMaker/spark-sdk-php": "*@dev"
+        "ProcessMaker/sdk-php": "*@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^7",

@@ -1,7 +1,7 @@
 # executor-php
 Script Task Executor Engine with PHP Runtime
 
-This docker image provides a sandboxed protected environment to run custom PHP scripts that are written in ProcessMaker Spark.
+This docker image provides a sandboxed protected environment to run custom PHP scripts that are written in ProcessMaker 4.
 User created script tasks should be isolated however have utilities available to them in order to get most common tasks done. This 
 PHP environment has PHP packages available and autoloaded so Script Tasks can take advantage of the following libraries:
 
