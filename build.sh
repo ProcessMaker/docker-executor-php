@@ -16,3 +16,4 @@ pushd src
 popd
 
 docker build -t $EXECUTOR_IMAGE .
+rm -rf src/sdk-php

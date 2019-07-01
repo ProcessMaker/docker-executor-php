@@ -199,7 +199,7 @@
             "dist": {
                 "type": "path",
                 "url": "./sdk-php",
-                "reference": "546b55b7c33823aaeee7210425b28133712cc3dd"
+                "reference": "184736ba3d4a65bd00c0885c23492808786aeb1d"
             },
             "require": {
                 "ext-curl": "*",
