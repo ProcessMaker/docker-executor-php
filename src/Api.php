@@ -39,7 +39,7 @@ class Api {
      * @param \ProcessMaker\Client\Configuration $config
      * @param boolean $ssl_verify
      */
-    public function __construct($config, $ssl_verify = true) {
+    public function __construct($config, $ssl_verify) {
         $this->client = new \GuzzleHttp\Client(['verify' => $ssl_verify]);
         $this->config = $config;
     }
