@@ -1,0 +1,20 @@
+{
+    "name": "processmaker/docker-executor-php",
+    "friendly_name": "PHP Docker Executor",
+    "description": "PHP script executor for processmaker 4",
+    "version": "0.0.1",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "ProcessMaker\\Package\\DockerExecutorPhp\\": "src",
+            "ProcessMaker\\ScriptRunners\\": "src/ScriptRunners"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ProcessMaker\\Package\\DockerExecutorPhp\\DockerExecutorPhpServiceProvider"
+            ]
+        }
+    }
+}
