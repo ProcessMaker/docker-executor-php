@@ -22,6 +22,9 @@ RUN composer install
 # Get the sdk repo if it doesn't exist
 RUN apt-get update && apt-get install -y git
 RUN if [ ! -d "sdk-php" ]; then git clone --depth 1 https://github.com/ProcessMaker/sdk-php.git; fi
+RUN mv sdk-php /opt/
+RUN composer config repositories.sdk-php path /opt/sdk-php
+RUN composer require ProcessMaker/sdk-php:@dev
 
 # Get the last AWS-SDK version
 RUN apt-get install zip unzip -y
