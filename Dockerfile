@@ -14,3 +14,15 @@ RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN apt-get update && apt-get install -y git zip unzip
 
 RUN composer install
+
+## 
+## Below is temporary until this is converted to a base image
+## 
+
+# Get the sdk repo if it doesn't exist
+RUN apt-get update && apt-get install -y git
+RUN if [ ! -d "sdk-php" ]; then git clone --depth 1 https://github.com/ProcessMaker/sdk-php.git; fi
+
+# Get the last AWS-SDK version
+RUN apt-get install zip unzip -y
+RUN composer require aws/aws-sdk-php
