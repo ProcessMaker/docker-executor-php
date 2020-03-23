@@ -18,10 +18,6 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        // Docker containers are built for a specific script executor ID `{id}`
-        // This is replaced on execution.
-        $image = env('SCRIPTS_PHP_IMAGE', 'processmaker4/executor-php-{id}:latest');
-
         \Artisan::command('docker-executor-php:install', function () {
             $scriptExecutor = ScriptExecutor::install([
                 'language' => 'php',
@@ -41,7 +37,6 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
             'name' => 'PHP',
             'runner' => 'PhpRunner',
             'mime_type' => 'application/x-php',
-            'image' => $image,
             'options' => ['invokerPackage' => "ProcessMaker\\Client"],
             'init_dockerfile' => [
                 'ARG SDK_DIR',
