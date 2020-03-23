@@ -1,4 +1,3 @@
-# Bring in from PHP docker image
 FROM php:7.2.8-cli-stretch
 
 # Copy over our PHP libraries/runtime
@@ -14,4 +13,3 @@ RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN apt-get update && apt-get install -y git zip unzip
 
 RUN composer install
-

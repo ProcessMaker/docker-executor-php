@@ -4,6 +4,7 @@ namespace ProcessMaker\Package\DockerExecutorPhp;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use ProcessMaker\Traits\PluginServiceProviderTrait;
+use ProcessMaker\Models\ScriptExecutor;
 
 class DockerExecutorPhpServiceProvider extends ServiceProvider
 {
@@ -17,15 +18,22 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        // Note: `processmaker4/executor-php` is now the base image that the instance inherits from
-        $image = env('SCRIPTS_PHP_IMAGE', 'processmaker4/executor-instance-php:v1.0.0');
+        // Docker containers are built for a specific script executor ID `{id}`
+        // This is replaced on execution.
+        $image = env('SCRIPTS_PHP_IMAGE', 'processmaker4/executor-php-{id}:latest');
 
         \Artisan::command('docker-executor-php:install', function () {
+            $scriptExecutor = ScriptExecutor::install([
+                'language' => 'php',
+                'title' => 'PHP Executor',
+                'description' => 'Default PHP Executor'
+            ]);
+            
+            // Build the instance image. This is the same as if you were to build it from the admin UI
+            \Artisan::call('processmaker:build-script-executor ' . $scriptExecutor->id);
+            
             // Restart the workers so they know about the new supported language
             \Artisan::call('horizon:terminate');
-
-            // Build the base image that `executor-instance-php` inherits from
-            system("docker build -t processmaker4/executor-php:latest " . __DIR__ . '/..');
         });
 
         $config = [
@@ -34,7 +42,13 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
             'mime_type' => 'application/x-php',
             'image' => $image,
             'options' => ['invokerPackage' => "ProcessMaker\\Client"],
-            'init_dockerfile' => "FROM processmaker4/executor-php:latest\nARG SDK_DIR\n",
+            'init_dockerfile' => [
+                'ARG SDK_DIR',
+                'COPY $SDK_DIR /opt/sdk-php',
+                'RUN composer config repositories.sdk-php path /opt/sdk-php',
+                'RUN composer require processmaker/sdk-php:@dev',
+            ],
+            'package_path' => __DIR__ . '/..'
         ];
         config(['script-runners.php' => $config]);
 
