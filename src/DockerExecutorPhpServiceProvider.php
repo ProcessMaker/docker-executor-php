@@ -26,7 +26,8 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
             $scriptExecutor = ScriptExecutor::install([
                 'language' => 'php',
                 'title' => 'PHP Executor',
-                'description' => 'Default PHP Executor'
+                'description' => 'Default PHP Executor',
+                'config' => 'RUN composer require aws/aws-sdk-php'
             ]);
             
             // Build the instance image. This is the same as if you were to build it from the admin UI
