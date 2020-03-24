@@ -44,7 +44,8 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
                 'RUN composer config repositories.sdk-php path /opt/sdk-php',
                 'RUN composer require processmaker/sdk-php:@dev',
             ],
-            'package_path' => __DIR__ . '/..'
+            'package_path' => __DIR__ . '/..',
+            'package_version' => self::version,
         ];
         config(['script-runners.php' => $config]);
 
