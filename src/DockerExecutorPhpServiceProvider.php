@@ -30,7 +30,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
             \Artisan::call('processmaker:build-script-executor ' . $scriptExecutor->id);
             
             // Restart the workers so they know about the new supported language
-            \Artisan::call('horizon:terminate');
+            // \Artisan::call('horizon:terminate');
         });
 
         $config = [
