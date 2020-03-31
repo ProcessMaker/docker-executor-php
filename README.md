@@ -1,3 +1,8 @@
+# Build
+```
+docker build -t processmaker4/executor-php:latest .
+```
+
 # executor-php
 Script Task Executor Engine with PHP Runtime
 
