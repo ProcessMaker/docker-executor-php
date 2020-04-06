@@ -4,6 +4,7 @@
     "description": "PHP script executor for processmaker 4",
     "version": "1.0.0",
     "minimum-stability": "dev",
+    "license": "GAGPL-3.0-or-later",
     "autoload": {
         "psr-4": {
             "ProcessMaker\\Package\\DockerExecutorPhp\\": "src",

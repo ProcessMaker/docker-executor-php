@@ -61,3 +61,11 @@ $ docker run -v <path to local data.json>:/opt/executor/data.json \
   processmaker/executor:php \
   php /opt/executor/bootstrap.php
 ```
+
+#### License
+
+Distributed under the [AGPL Version 3](https://www.gnu.org/licenses/agpl-3.0.en.html)
+
+ProcessMaker \(C\) 2002 - 2020 ProcessMaker Inc.
+
+For further information visit: [http://www.processmaker.com/](http://www.processmaker.com/)
