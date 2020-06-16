@@ -2,7 +2,7 @@
     "name": "processmaker/docker-executor-php",
     "friendly_name": "PHP Docker Executor",
     "description": "PHP script executor for processmaker 4",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "minimum-stability": "dev",
     "license": "GAGPL-3.0-or-later",
     "autoload": {
