@@ -6,13 +6,7 @@ These examples can be used directly in the script editor.
 
 ```php
 <?php
-$config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
-$config->setHost(getenv('API_HOST'));
-
-$apiInstance = new ProcessMaker\Client\Api\UsersApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = $api->users();
 
 $users = [];
 
@@ -42,13 +36,7 @@ return ['users', $users];
 
 ```php
 <?php
-$config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
-$config->setHost(getenv('API_HOST'));
-
-$apiInstance = new ProcessMaker\Client\Api\UsersApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = $api->users();
 
 $user = $apiInstance->getUserById(5);
 
@@ -65,18 +53,8 @@ return [
 ## Create User
 ```php
 <?php
-$config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
-$config->setHost(getenv('API_HOST'));
+$apiInstance = $api->users();
 
-$apiInstance = new ProcessMaker\Client\Api\UsersApi(
-    new GuzzleHttp\Client(),
-    $config
-);
-
-$apiInstance = new ProcessMaker\Client\Api\UsersApi(
-    new GuzzleHttp\Client(),
-    $config
-);
 $user = new \ProcessMaker\Client\Model\UsersEditable();
 $user->setFirstname('Test');
 $user->setLastname('User');
@@ -93,13 +71,7 @@ return ["newUserId" => $newUser->getId()];
 
 ```php
 <?php
-$config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
-$config->setHost(getenv('API_HOST'));
-
-$apiInstance = new ProcessMaker\Client\Api\UsersApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = $api->users();
 
 $userId = 5;
 $user = $apiInstance->getUserById($userId);
@@ -116,13 +88,7 @@ return ['success' => true];
 
 ```php
 <?php
-$config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
-$config->setHost(getenv('API_HOST'));
-
-$apiInstance = new ProcessMaker\Client\Api\UsersApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = $api->users();
 
 $apiInstance->deleteUser(4);
 
@@ -134,13 +100,7 @@ return ['success' => true];
 
 ```php
 <?php
-$config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
-$config->setHost(getenv('API_HOST'));
-
-$apiInstance = new ProcessMaker\Client\Api\UsersApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = $api->users();
 
 $restoreUser = new \ProcessMaker\Client\Model\RestoreUser();
 $restoreUser->setUsername('testuser');
@@ -156,13 +116,7 @@ Set the groups that a user belongs to
 
 ```php
 <?php
-$config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
-$config->setHost(getenv('API_HOST'));
-
-$apiInstance = new ProcessMaker\Client\Api\UsersApi(
-    new GuzzleHttp\Client(),
-    $config
-);
+$apiInstance = $api->users();
 
 $userId = 5;
 $groupIds = [2,4];
