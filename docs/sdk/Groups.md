@@ -14,6 +14,7 @@ $groups = [];
 $result = $apiInstance->getGroups();
 foreach ($result->getData() as $group) {
     $groups[] = [
+        'id' => $group->getId(),
         'name' => $group->getName(),
         'description' => $group->getDescription(),
         'status' => $group->getStatus()
@@ -32,6 +33,7 @@ $result = $apiInstance->getGroups($status, $filter, $order_by, $order_direction,
 
 foreach ($result->getData() as $group) {
     $groups[] = [
+        'id' => $group->getId(),
         'name' => $group->getName(),
         'description' => $group->getDescription(),
         'status' => $group->getStatus()
