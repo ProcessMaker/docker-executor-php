@@ -22,7 +22,7 @@ $filter = 'admin';
 $order_by = 'id';
 $order_direction = 'asc';
 $per_page = 1; 
-$include = ''; // Include data from related models in payload. Comma seperated list.
+$include = ''; // Include data from related models in payload. Comma separated list.
 
 $result = $apiInstance->getUsers($status, $filter, $order_by, $order_direction, $per_page, $include);
 foreach ($result->getData() as $user) {
