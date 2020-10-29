@@ -1,4 +1,9 @@
-# Get Users
+# Users SDK Examples
+
+These examples can be used directly in the script editor.
+
+## Get Users
+
 ```php
 <?php
 $config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
@@ -11,12 +16,13 @@ $apiInstance = new ProcessMaker\Client\Api\UsersApi(
 
 $users = [];
 
+// Get all users
 $result = $apiInstance->getUsers();
 foreach ($result->getData() as $user) {
     $users[] = [ 'username' => $user->getUsername(), 'email' => $user->getEmail() ];
 }
 
-// With optional arguments
+// Filter and sort users with optional arguments
 $status = 'ACTIVE';
 $filter = 'admin';
 $order_by = 'id';
@@ -24,7 +30,7 @@ $order_direction = 'asc';
 $per_page = 1; 
 $include = ''; // Include data from related models in payload. Comma seperated list.
 
-$result = $apiInstance->getUsers();
+$result = $apiInstance->getUsers($status, $filter, $order_by, $order_direction, $per_page, $include);
 foreach ($result->getData() as $user) {
     $users[] = [ 'username' => $user->getUsername(), 'email' => $user->getEmail() ];
 }
@@ -32,7 +38,7 @@ foreach ($result->getData() as $user) {
 return ['users', $users];
 ```
 
-# Get User
+## Get User
 
 ```php
 <?php
@@ -56,7 +62,7 @@ return [
 ```
 
 
-# Create User
+## Create User
 ```php
 <?php
 $config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
@@ -83,7 +89,7 @@ $newUser = $apiInstance->createUser($user);
 return ["newUserId" => $newUser->getId()];
 ```
 
-# Update User
+## Update User
 
 ```php
 <?php
@@ -106,7 +112,8 @@ $result = $apiInstance->updateUser($userId, $user);
 return ['success' => true];
 ```
 
-# Delete User
+## Delete User
+
 ```php
 <?php
 $config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
@@ -123,7 +130,8 @@ $apiInstance->deleteUser(4);
 return ['success' => true];
 ```
 
-# Restore Deleted User
+## Restore Deleted User
+
 ```php
 <?php
 $config = ProcessMaker\Client\Configuration::getDefaultConfiguration()->setAccessToken(getenv('API_TOKEN'));
@@ -142,7 +150,7 @@ $apiInstance->restoreUser($restoreUser);
 return ['success' => true];
 ```
 
-# Update User Groups
+## Update User Groups
 
 Set the groups that a user belongs to
 
