@@ -81,7 +81,7 @@ $file = $apiInstance->getFileContentsById($fileId);
 $fileContents = file_get_contents($file->getPathname());
 
 return [
-    'fileContents' => $fileContents,
+    'fileContents' => base64_encode($fileContents),
 ];
 ```
 

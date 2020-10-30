@@ -33,6 +33,8 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
             // \Artisan::call('horizon:terminate');
         });
 
+        $this->commands([TestDocs::class]);
+
         $config = [
             'name' => 'PHP',
             'runner' => 'PhpRunner',
