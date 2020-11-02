@@ -47,8 +47,17 @@ class TestDocs extends Command
             $codes = $matches[1];
         }
 
-        foreach($codes as $code) {
-            $this->runCode($code);
+        try {
+            foreach($codes as $code) {
+                $this->runCode($code);
+            }
+        } catch(\ProcessMaker\Exception\ScriptException $e) {
+            $stack = $e->getMessage();
+            $stack = explode("\n", $stack);
+            $stack = array_slice($stack, 0, 15);
+            $stack = join("\n", $stack);
+
+            $this->info($stack);
         }
     }
 
