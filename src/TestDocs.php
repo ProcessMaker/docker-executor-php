@@ -13,7 +13,7 @@ class TestDocs extends Command
      *
      * @var string
      */
-    protected $signature = 'docker-executor-php:test-docs {file}';
+    protected $signature = 'docker-executor-php:test-docs {file} {--last}';
 
     /**
      * The console command description.
@@ -45,6 +45,10 @@ class TestDocs extends Command
 
         if (preg_match_all('/```php[\r\n]+(.*?)```/s', $fileContents, $matches)) {
             $codes = $matches[1];
+        }
+
+        if ($this->option('last')) {
+            $codes = array_slice($codes, -1);
         }
 
         try {

@@ -2,6 +2,24 @@
 
 These examples can be used directly in the script editor.
 
+## Start a new process request
+
+```php
+<?php
+$apiInstance = $api->processes();
+
+
+$process_id = 8; // int | ID of process to return
+$event = 'node_1'; // string | Node ID of the start event
+$body = new \stdClass; // object | data that will be stored as part of the created request
+
+$body->foo = 'bar';
+
+$processRequest = $apiInstance->triggerStartEvent($process_id, $event, $body);
+
+return ['newProcessRequestId' => $processRequest->getId()];
+```
+
 ## Get Processes
 
 ```php
@@ -140,3 +158,48 @@ $processes[] = [
 return ['processes' => $processes];
 ```
 
+
+## Export Process
+```php
+<?php
+$apiInstance = $api->processes();
+$process_id = 1; // int | ID of process to export
+$result = $apiInstance->exportProcess($process_id);
+
+return [
+    'downloadUrl' => $result->getUrl(),
+];
+```
+
+## Import Process
+```php
+<?php
+$apiInstance = $api->processes();
+
+$exportedProcess = 'http://some-server/exported-process.json';
+$tmpFile = '/tmp/process.json';
+copy($exportedProcess, $tmpFile);
+$result = $apiInstance->importProcess($tmpFile);
+
+return [
+    'importedProcessId' => $result->getProcess()['id']
+];
+```
+
+## Set assignments for an imported process
+```php
+<?php
+$apiInstance = $api->processes();
+
+$process_id = 9; // int | ID of process to return
+$process_assignments = new \ProcessMaker\Client\Model\ProcessAssignments();
+
+$process_assignments->setEditData([
+    'users' => [1],
+    'groups' => [],
+]);
+$apiInstance->assignmentProcess($process_id, $process_assignments);
+
+// If no errors are thrown, then the process assignments were successfully set
+return ['success' => true];
+```
