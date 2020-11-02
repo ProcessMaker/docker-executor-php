@@ -43,6 +43,28 @@ foreach ($result->getData() as $group) {
 return ['groups', $groups];
 ```
 
+## Get all users in a group
+
+```php
+<?php
+$apiInstance = $api->groups();
+
+$users = [];
+$groupId = 3;
+$result = $apiInstance->getGroupUsers($groupId);
+
+foreach ($result->getData() as $user) {
+    $users[] = [
+        'id' => $user->getId(),
+        'name' => $user->getUsername(),
+        'email' => $user->getEmail(),
+        'status' => $user->getStatus(),
+    ];
+}
+
+return ['usersInGroup' => $users];
+```
+
 ## Get Group
 
 ```php
