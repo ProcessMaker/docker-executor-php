@@ -26,7 +26,7 @@ return ['environmentVariables' => $envVars];
 <?php
 $apiInstance = $api->environmentVariables();
 
-$envVar= $apiInstance->getEnvironmentVariableById(1);
+$envVar = $apiInstance->getEnvironmentVariableById(11);
 
 return [
     'name' => $envVar->getName(),
@@ -55,13 +55,13 @@ return ['newEnvVarId' => $newEnvVar->getId()];
 <?php
 $apiInstance = $api->environmentVariables();
 
-$envVar= $apiInstance->getEnvironmentVariableById(12);
+$envVar = $apiInstance->getEnvironmentVariableById(11);
 
 $envVar->setName('test_updated');
 $envVar->setDescription('test description updated');
 $envVar->setValue('12345');
 
-$newEnvVar = $apiInstance->updateEnvironmentVariable(
+$apiInstance->updateEnvironmentVariable(
     $envVar->getId(),
     $envVar
 );
@@ -75,7 +75,7 @@ return ['success' => true];
 <?php
 $apiInstance = $api->environmentVariables();
 
-$envVar= $apiInstance->deleteEnvironmentVariable(12);
+$apiInstance->deleteEnvironmentVariable(15);
 
 // If no errors are thrown, then the environment variable was successfully deleted
 return ['success' => true];
