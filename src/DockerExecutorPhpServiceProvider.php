@@ -10,7 +10,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
 {
     use PluginServiceProviderTrait;
 
-    const version = '1.0.0'; // Required for PluginServiceProviderTrait
+    const version = '1.0.1'; // Required for PluginServiceProviderTrait
 
     public function register()
     {
@@ -28,6 +28,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
             
             // Build the instance image. This is the same as if you were to build it from the admin UI
             \Artisan::call('processmaker:build-script-executor ' . $scriptExecutor->id);
+            $this->info(\Artisan::output());
             
             // Restart the workers so they know about the new supported language
             // \Artisan::call('horizon:terminate');

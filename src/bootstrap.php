@@ -41,8 +41,12 @@ if (getenv('API_TOKEN') && getenv('API_HOST') && class_exists('ProcessMaker\Clie
     $api_config->setHost(getenv('API_HOST'));
     $api = new Executor\Api($api_config, isset($_ENV['API_SSL_VERIFY']) ? (bool) $_ENV['API_SSL_VERIFY'] : true);
 }
-
-$response = require(SCRIPT_PATH);
+try {
+    $response = require(SCRIPT_PATH);
+} catch(GuzzleHttp\Exception\ServerException $e) {
+    // Guzzle truncates by default so re-throw using full response
+    throw new \Exception(\GuzzleHttp\Psr7\str($e->getResponse()));
+}
 
 // Finally store the output of our script into our output JSON path
 file_put_contents(OUTPUT_JSON_PATH, json_encode($response));
