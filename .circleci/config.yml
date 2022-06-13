@@ -4,7 +4,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/php:7.4.30-browsers
+      - image: cimg/php:7.4-browsers
     steps:
       - checkout
       - setup_remote_docker:
@@ -38,7 +38,7 @@ jobs:
       - run:
           name: "Docker Hub Login"
           command: |
-            docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+            echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_USERNAME --password-stdin
       - run:
           name: Push ECR
           command: |
@@ -46,4 +46,7 @@ jobs:
 workflow:
   build-executor:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: develop
