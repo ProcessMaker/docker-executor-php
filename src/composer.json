@@ -1,11 +1,11 @@
 {
     "require": {
-        "aws/aws-sdk-php": "^3.192",
-        "guzzlehttp/guzzle": "~6.0"
+        "aws/aws-sdk-php": "^3.225",
+        "guzzlehttp/guzzle": "^6.5"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.5.14",
-        "mockery/mockery": "^1.2"
+        "phpunit/phpunit": "^9.5.20",
+        "mockery/mockery": "^1.5"
     },
     "autoload": {
         "psr-4": {"Executor\\": "."}

@@ -10,7 +10,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
 {
     use PluginServiceProviderTrait;
 
-    const version = '1.0.0'; // Required for PluginServiceProviderTrait
+    const version = '1.1.0'; // Required for PluginServiceProviderTrait
 
     public function register()
     {
@@ -23,7 +23,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
                 'language' => 'php',
                 'title' => 'PHP Executor',
                 'description' => 'Default PHP Executor',
-                'config' => 'RUN composer require aws/aws-sdk-php'
+                'config' => ''
             ]);
             
             // Build the instance image. This is the same as if you were to build it from the admin UI
@@ -45,6 +45,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
                 'COPY $SDK_DIR /opt/sdk-php',
                 'RUN composer config repositories.sdk-php path /opt/sdk-php',
                 'RUN composer require processmaker/sdk-php:@dev',
+                'RUN composer require aws/aws-sdk-php'
             ],
             'package_path' => __DIR__ . '/..',
             'package_version' => self::version,
