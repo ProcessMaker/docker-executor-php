@@ -27,7 +27,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
             ]);
             
             // Build the instance image. This is the same as if you were to build it from the admin UI
-            \Artisan::call('processmaker:build-script-executor ' . $scriptExecutor->id);
+            \Artisan::call('processmaker:build-script-executor ' . $scriptExecutor->id .' --rebuild');
             
         });
 
