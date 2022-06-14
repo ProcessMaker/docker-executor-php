@@ -1,4 +1,4 @@
-FROM php:7.4-cli-bullseye
+FROM php:7.4-cli-bullseye as base
 # Copy over our PHP libraries/runtime
 COPY ./src /opt/executor
 # Set working directory to our /opt/executor location
@@ -14,3 +14,15 @@ COPY processmaker/sdk-php /opt/sdk-php
 # Install PHP SDK
 RUN composer config repositories.sdk-php path /opt/sdk-php
 RUN composer require processmaker/sdk-php:@dev
+
+FROM php:7.4-cli-bullseye
+# Install composer
+RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+# Install software reqs
+RUN apt-get update && apt-get install -y git zip unzip
+RUN composer install
+# Copy executor code
+COPY --from=base /opt/executor /opt/executor
+# Set working directory to our /opt/executor location
+WORKDIR /opt/executor
