@@ -1,2 +1,5 @@
 src/vendor
+src/composer.lock
 /sdk
+/processmaker
+

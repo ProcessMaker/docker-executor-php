@@ -1,0 +1,52 @@
+version: 2.1
+orbs:
+  snyk: snyk/snyk@1.1.2
+jobs:
+  build:
+    docker:
+      - image: cimg/php:7.4-browsers
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+          version: 20.10.14
+      - run:
+          name: Install requirements
+          command: |
+            sudo apt-get update -y
+            sudo apt install -y libmagickwand-dev jq
+            echo '\n' | sudo pecl install imagick
+      - run:
+          name: Build PHP SDK 
+          command: |
+            sh fetch.sh
+            cd processmaker
+            composer install
+            php artisan processmaker:sdk php ./sdk-php
+            cd ..
+      - run:
+          name: Build Docker Image
+          command: |
+            sh build.sh
+            TAG=$(cat composer.json | jq -r '.version')
+            echo "export SDKIMAGE=processmaker/docker-executor-php:${TAG}" >> $BASH_ENV
+      - snyk/scan:
+          docker-image-name: '$SDKIMAGE'
+          severity-threshold: high
+          fail-on-issues: false
+          monitor-on-build: false
+      - run:
+          name: "Docker Hub Login"
+          command: |
+            echo "$DOCKER_HUB_PASSWORD" | docker login --username $DOCKER_HUB_USERNAME --password-stdin
+      - run:
+          name: Push ECR
+          command: |
+            docker push $SDKIMAGE
+workflow:
+  build-executor:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: develop
