@@ -23,7 +23,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
                 'language' => 'php',
                 'title' => 'PHP Executor',
                 'description' => 'Default PHP Executor',
-                'config' => 'RUN composer require aws/aws-sdk-php'
+                'config' => 'RUN composer require aws/aws-sdk-php:3.226.0'
             ]);
             
             // Build the instance image. This is the same as if you were to build it from the admin UI
