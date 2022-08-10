@@ -1,17 +1,17 @@
 <?php
+
 namespace Executor;
 
 /**
  * This helper allows you to use Api classes in the namespace
  * ProcessMaker\Client\Api\ by calling its name as a function
  * on an instance of this class. The class name is lowercase first.
- * 
+ *
  * For example, to call \ProcessMaker\Client\Api\ProcessesApi
  * call $api->processes()
- * 
  */
-class Api {
-
+class Api
+{
     /**
      * Reusable instances of api objects
      *
@@ -37,9 +37,10 @@ class Api {
      * Constructor
      *
      * @param \ProcessMaker\Client\Configuration $config
-     * @param boolean $ssl_verify
+     * @param bool $ssl_verify
      */
-    public function __construct($config, $ssl_verify) {
+    public function __construct($config, $ssl_verify)
+    {
         $this->client = new \GuzzleHttp\Client(['verify' => $ssl_verify]);
         $this->config = $config;
     }
@@ -54,18 +55,17 @@ class Api {
     public function __call($name, $arguments)
     {
         if (count($arguments) > 0) {
-            throw new \BadMethodCallException("Arguments should not be passed");
+            throw new \BadMethodCallException('Arguments should not be passed');
         }
 
         $class_name = $this->getClassName($name);
 
         if (array_key_exists($class_name, $this->instances)) {
             return $this->instances[$class_name];
-
         } elseif (class_exists($this->getClassName($name))) {
             $this->instances[$class_name] = new $class_name($this->client, $this->config);
-            return $this->instances[$class_name];
 
+            return $this->instances[$class_name];
         } else {
             throw new \BadMethodCallException("class $class_name does not exist");
         }
@@ -79,6 +79,6 @@ class Api {
      */
     private function getClassName($name)
     {
-        return '\\ProcessMaker\\Client\Api\\' . ucfirst($name) . "Api";
+        return '\\ProcessMaker\\Client\Api\\' . ucfirst($name) . 'Api';
     }
 }

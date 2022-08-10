@@ -52,14 +52,14 @@ class TestDocs extends Command
         }
 
         try {
-            foreach($codes as $code) {
+            foreach ($codes as $code) {
                 $this->runCode($code);
             }
-        } catch(\ProcessMaker\Exception\ScriptException $e) {
+        } catch (\ProcessMaker\Exception\ScriptException $e) {
             $stack = $e->getMessage();
             $stack = explode("\n", $stack);
             $stack = array_slice($stack, 0, 15);
-            $stack = join("\n", $stack);
+            $stack = implode("\n", $stack);
 
             $this->info($stack);
         }
@@ -75,7 +75,7 @@ class TestDocs extends Command
             'timeout' => 60,
         ]);
 
-        $result = $script->runScript([],[]);
+        $result = $script->runScript([], []);
 
         $script->delete();
 
