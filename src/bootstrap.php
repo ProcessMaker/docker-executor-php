@@ -1,4 +1,5 @@
 <?php
+
 // Include our composer libraries
 require __DIR__ . '/vendor/autoload.php';
 
@@ -13,25 +14,24 @@ const DATA_JSON_INVALID = 100;
 const CONFIG_JSON_INVALID = 101;
 const SCRIPT_PATH_INVALID = 102;
 
-
 $data = json_decode(@file_get_contents(DATA_JSON_PATH), true);
-if($data === null) {
+if ($data === null) {
     // Terminate script, the data is invalid json or cannot be ready
-    fwrite(STDERR, "Data JSON file (" . DATA_JSON_PATH . ") does not exist or is invalid.");
+    fwrite(STDERR, 'Data JSON file (' . DATA_JSON_PATH . ') does not exist or is invalid.');
     exit(DATA_JSON_INVALID);
 }
 
 $config = json_decode(@file_get_contents(CONFIG_JSON_PATH), true);
-if($config === null) {
+if ($config === null) {
     // Terminate script, the config is invalid json or cannot be ready
-    fwrite(STDERR, "Config JSON file (" . CONFIG_JSON_PATH . ") does not exist or is invalid.");
+    fwrite(STDERR, 'Config JSON file (' . CONFIG_JSON_PATH . ') does not exist or is invalid.');
     exit(CONFIG_JSON_INVALID);
 }
 
 // Check for existence of script
-if(!file_exists(SCRIPT_PATH)) {
+if (!file_exists(SCRIPT_PATH)) {
     // Terminate script, the config is invalid json or cannot be ready
-    fwrite(STDERR, "Script file (" . SCRIPT_PATH . ") does not exist or is invalid.");
+    fwrite(STDERR, 'Script file (' . SCRIPT_PATH . ') does not exist or is invalid.');
     exit(SCRIPT_PATH_INVALID);
 }
 
@@ -42,9 +42,7 @@ if (getenv('API_TOKEN') && getenv('API_HOST') && class_exists('ProcessMaker\Clie
     $api = new Executor\Api($api_config, isset($_ENV['API_SSL_VERIFY']) ? (bool) $_ENV['API_SSL_VERIFY'] : true);
 }
 
-$response = require(SCRIPT_PATH);
+$response = require SCRIPT_PATH;
 
 // Finally store the output of our script into our output JSON path
 file_put_contents(OUTPUT_JSON_PATH, json_encode($response));
-
-

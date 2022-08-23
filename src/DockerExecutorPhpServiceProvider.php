@@ -1,10 +1,11 @@
 <?php
+
 namespace ProcessMaker\Package\DockerExecutorPhp;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use ProcessMaker\Traits\PluginServiceProviderTrait;
 use ProcessMaker\Models\ScriptExecutor;
+use ProcessMaker\Traits\PluginServiceProviderTrait;
 
 class DockerExecutorPhpServiceProvider extends ServiceProvider
 {
@@ -23,12 +24,12 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
                 'language' => 'php',
                 'title' => 'PHP Executor',
                 'description' => 'Default PHP Executor',
-                'config' => 'RUN composer require aws/aws-sdk-php:3.226.0'
+                'config' => 'RUN composer require aws/aws-sdk-php:3.226.0',
             ]);
-            
+
             // Build the instance image. This is the same as if you were to build it from the admin UI
             \Artisan::call('processmaker:build-script-executor ' . $scriptExecutor->id);
-            
+
             // Restart the workers so they know about the new supported language
             // \Artisan::call('horizon:terminate');
         });
@@ -39,7 +40,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
             'name' => 'PHP',
             'runner' => 'PhpRunner',
             'mime_type' => 'application/x-php',
-            'options' => ['invokerPackage' => "ProcessMaker\\Client"],
+            'options' => ['invokerPackage' => 'ProcessMaker\\Client'],
             'init_dockerfile' => [
                 'ARG SDK_DIR',
                 'COPY $SDK_DIR /opt/sdk-php',

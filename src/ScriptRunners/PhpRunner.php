@@ -17,6 +17,7 @@ class PhpRunner extends Base
         $dockerConfig['image'] = config('script-runners.php.image');
         $dockerConfig['command'] = 'php /opt/executor/bootstrap.php';
         $dockerConfig['inputs']['/opt/executor/script.php'] = $code;
+
         return $dockerConfig;
     }
 }

@@ -1,2 +1,4 @@
 src/vendor
 /sdk
+.php-cs-fixer.php
+.php-cs-fixer.cache
