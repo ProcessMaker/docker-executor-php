@@ -1,4 +1,4 @@
-FROM php:7.2.8-cli-stretch
+FROM php:8.1.11-cli-bullseye
 
 # Copy over our PHP libraries/runtime
 COPY ./src /opt/executor
