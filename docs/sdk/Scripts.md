@@ -94,49 +94,17 @@ $apiInstance = $api->scripts();
 $data = ['exampleData' => 1];
 $config = ['exampleConfig' => 1];
 $execution = $apiInstance->executeScript(
-    1,
-    json_encode(
-        ['data' => $data, 'config' => $config]
-    )
+    1, // The script ID to run
+    [
+        'sync' => true,
+        'data' => json_encode($data), // Optional
+        'config' => json_encode($config), // Optional
+    ]
 );
 
 return [
-    'status' => $execution->getStatus(),
-    'key' => $execution->getKey(),
+    'result' => $execution->getOutput(),
 ];
-```
-
-## Preview script
-```php
-<?php
-$apiInstance = $api->scripts();
-
-$apiInstance->previewScript(
-    1,
-    json_encode(
-        [
-            'data' => [],
-            'config' => [],
-            'code' => '<?php return []; ?>',
-            'nonce' => '123abc',
-        ]
-    )
-);
-
-// If no errors are thrown, then the script preview was successfully queued
-return ['success' => true];
-```
-
-## Script execution result
-
-```php
-<?php
-$apiInstance = $api->scripts();
-
-$key = 'scr5fa1e842a495f2.85545557'; // key from executeScript
-$result = $apiInstance->getScriptExecutionResponse($key);
-
-return ['scriptResult' => $result];
 ```
 
 ## Duplicate Script
