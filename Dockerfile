@@ -1,4 +1,4 @@
-FROM php:7.2.8-cli-stretch
+FROM php:7.3.33-cli-buster
 
 # Copy over our PHP libraries/runtime
 COPY ./src /opt/executor
@@ -10,7 +10,8 @@ WORKDIR /opt/executor
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
+RUN echo "deb https://archive.debian.org/debian buster main" > /etc/apt/sources.list
+
 RUN apt-get update && apt-get install -y git zip unzip
 
 RUN composer install
