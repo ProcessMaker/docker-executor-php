@@ -11,7 +11,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
 {
     use PluginServiceProviderTrait;
 
-    const version = '1.0.0'; // Required for PluginServiceProviderTrait
+    public const version = '1.4.1'; // Required for PluginServiceProviderTrait
 
     public function register()
     {
@@ -19,7 +19,7 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        \Artisan::command('docker-executor-php:install', function () {
+        \Artisan::command('docker-executor-php:install {--no-build : Skip building the script executor image}', function () {
             $scriptExecutor = ScriptExecutor::install([
                 'language' => 'php',
                 'title' => 'PHP Executor',
@@ -28,10 +28,9 @@ class DockerExecutorPhpServiceProvider extends ServiceProvider
             ]);
 
             // Build the instance image. This is the same as if you were to build it from the admin UI
-            \Artisan::call('processmaker:build-script-executor ' . $scriptExecutor->id);
-
-            // Restart the workers so they know about the new supported language
-            // \Artisan::call('horizon:terminate');
+            if (!$this->option('no-build')) {
+                \Artisan::call('processmaker:build-script-executor ' . $scriptExecutor->id);
+            }
         });
 
         $this->commands([TestDocs::class]);
