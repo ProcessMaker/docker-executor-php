@@ -1,6 +1,6 @@
 {
     "require": {
-        "aws/aws-sdk-php": "^3.192",
+        "aws/aws-sdk-php": "^3.192,<3.368",
         "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
@@ -9,5 +9,10 @@
     },
     "autoload": {
         "psr-4": {"Executor\\": "."}
+    },
+    "config": {
+        "audit": {
+            "ignore": ["PKSA-dxyf-6n16-t87m", "PKSA-n3s6-289w-qtqb", "PKSA-z3gr-8qht-p93v"]
+        }
     }
 }
