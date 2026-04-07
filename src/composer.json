@@ -12,7 +12,7 @@
     },
     "config": {
         "audit": {
-            "block-insecure": false
+            "ignore": ["PKSA-dxyf-6n16-t87m", "PKSA-n3s6-289w-qtqb", "PKSA-z3gr-8qht-p93v", "PKSA-4t1p-xpk2-nsss"]
         }
     }
 }
