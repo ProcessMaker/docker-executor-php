@@ -3,3 +3,4 @@ src/vendor
 .php-cs-fixer.php
 .php-cs-fixer.cache
 .envrc
+.idea
