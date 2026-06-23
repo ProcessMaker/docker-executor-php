@@ -12,16 +12,7 @@
     },
     "config": {
         "audit": {
-            "ignore": [
-                "PKSA-4t1p-xpk2-nsss",
-                "PKSA-dxyf-6n16-t87m",
-                "PKSA-n3s6-289w-qtqb",
-                "PKSA-z3gr-8qht-p93v",
-                "PKSA-jj5t-2zs1-dcfm",
-                "PKSA-gm5x-j3mz-71n9",
-                "PKSA-hn62-zkx4-1y5q",
-                "PKSA-gvzg-s447-b5b5"
-            ]
+            "block-insecure": false
         }
     }
 }
