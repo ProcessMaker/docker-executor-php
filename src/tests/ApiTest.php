@@ -8,6 +8,15 @@ class ApiTest extends TestCase
 
     const API_HOST = 'http://pm.local.processmaker.com/api/1.0';
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        if (!class_exists(ProcessMaker\Client\Configuration::class)) {
+            $this->markTestSkipped('The generated SDK is installed only during the executor image build.');
+        }
+    }
+
     public function testCallUserApi()
     {
         $api_config = new ProcessMaker\Client\Configuration();
