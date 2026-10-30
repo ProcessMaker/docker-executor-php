@@ -10,8 +10,14 @@ This docker image provides a sandboxed protected environment to run custom PHP s
 User created script tasks should be isolated however have utilities available to them in order to get most common tasks done. This 
 PHP environment has PHP packages available and autoloaded so Script Tasks can take advantage of the following libraries:
 
-- guzzlehttp/guzzle: ~6.0
+- guzzlehttp/guzzle: ^7.9
 - TODO : Identify most common libraries used for existing script tasks
+
+The ProcessMaker SDK is generated from the application's OpenAPI document during
+the executor build. The PHP generator must produce code compatible with Guzzle
+7; do not replace the generated SDK with a manually patched copy. The build
+uses `php artisan processmaker:sdk php <output> --clean`; the generator version
+is pinned by ProcessMaker's `BuildSdk` service.
 
 ## How to use
 The execution requires a data.json, config.json and an output.json file be present on the host system. The data.json represents the 
